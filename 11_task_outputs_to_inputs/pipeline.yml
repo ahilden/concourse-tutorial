@@ -1,16 +1,23 @@
 ---
 resources:
-- name: resource-tutorial
+- name: DB2-Server-Base 
   type: git
   source:
     uri: https://github.com/ahilden/concourse-tutorial.git
 
+- name: DB2-Server-1.1.1 
+  type: git
+  source:
+    uri: https://github.com/ahilden/flight-school
+    branch: master
+
 jobs:
-- name: job-pass-files
+- name: DB2-Server-CVT 
   public: true
   plan:
-  - get: resource-tutorial
+  - get: DB2-Server-Base 
+  - get: DB2-Server-1.1.1 
   - task: create-some-files
-    file: resource-tutorial/11_task_outputs_to_inputs/create_some_files.yml
+    file: DB2-Server-Base/11_task_outputs_to_inputs/create_some_files.yml
   - task: show-some-files
-    file: resource-tutorial/11_task_outputs_to_inputs/show_files.yml
+    file: DB2-Server-Base/11_task_outputs_to_inputs/show_files.yml
