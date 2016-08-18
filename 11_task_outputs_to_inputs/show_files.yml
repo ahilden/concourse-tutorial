@@ -6,7 +6,6 @@ image_resource:
   source: {repository: busybox}
 
 inputs:
-- name: resource-tutorial
 - name: some-files
 
 run:
